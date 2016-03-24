@@ -1,0 +1,47 @@
+\documentclass{beamer}
+\usetheme{Berlin}
+\usecolortheme{beaver}
+
+\title[JavaScript]{JavaScript: Sort of a Big Deal,}
+\subtitle{But Sort of Quirky...}
+\author{David Johnston: dwtj@iastate.edu}
+\institute{Iowa State University}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{natbib}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{multimedia}
+\usepackage{listings}
+\include{javascript_listing_def}
+\lstset{basicstyle=\footnotesize\ttfamily,breaklines=true,showspaces=false}
+\bibliographystyle{apalike}
+\graphicspath{{figures/}}
+
+\AtBeginSection[]{
+  \begin{frame}
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+    \usebeamerfont{title}\insertsectionhead\par%
+  \end{beamercolorbox}
+  \vfill
+  \end{frame}
+}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\input{0-introduction}
+\input{1-values_and_types}
+\input{2-what_is_this}
+\input{3-variables_and_scopes}
+\input{4-inheriting_properties}
+
+\begin{frame}[allowframebreaks]
+  \bibliography{refs}{}
+\end{frame}
+
+\end{document}

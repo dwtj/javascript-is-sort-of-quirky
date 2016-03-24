@@ -1,0 +1,130 @@
+\section{Variables and Scopes}
+
+\begin{frame}[fragile]
+    \frametitle{Why does this happen?}
+    \begin{lstlisting}[language=JavaScript]
+        function outer() {
+            function inner() {
+                x = 5
+            }
+            inner();
+        }
+        outer();
+        console.log(x);  // ==> 5
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{C, C++, and Java Variables Are \textit{Block Scoped}}
+    \begin{lstlisting}[language=Java]
+    public void f() {
+        for (int i = 0; i<10; i++) {
+            System.out.println(i);
+        }
+        // Cannot use `i` here.
+    }
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{JavaScript Variables are \textbf{Not} Block Scoped.\\
+                They are function scoped.}
+    \begin{lstlisting}[language=JavaScript]
+    function f() {
+        for (var i = 0; i<10; i++) {
+            console.log(i);
+        }
+        // Can use `i` here.
+        console.log(i)  // ==> 10
+    }\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{JavaScript Variable Declarations are \textit{Hoisted}}
+    \begin{lstlisting}[language=JavaScript]
+    function f() {
+        // `i` is declared but uninitialized.
+        console.log(i)  // ==> undefined
+        var i = 42
+        console.log(i)  // ==> 42
+    }
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Variable Lookups in a Nested Function?}
+    \begin{lstlisting}[language=JavaScript]
+    var x = new Object();
+    function outer() {
+        function inner() {
+            return x;
+        }
+        return inner;
+    }
+    x === outer()();  // ==> true
+    \end{lstlisting}
+
+    The \texttt{x} variable which is read is the ``nearest'' variable with this
+    name in the scope chain. The search goes: \texttt{inner}, \texttt{outer},
+    then finally \texttt{window} (the global object).
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Variable Assignments in a Nested Function?}
+    \begin{lstlisting}[language=JavaScript]
+        function outer() {
+            function inner() {
+                x = 5
+            }
+            inner();
+        }
+        outer();
+        console.log(x);  // ==> 5
+    \end{lstlisting}
+
+    If no \texttt{x} variable is found in searching the scope chaing, then this
+    implicitly declares a variable \texttt{x} as a property of the global object
+    and initializes it.\footnotemark
+
+    \footnotetext[1]{As of ES5, one can prevent this foolishness by using strict
+                     mode.}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{How Is the Scope Chain Determined?}
+    For some user-defined function \texttt{f}, the parent scope of \texttt{f} is
+    the scope in which \texttt{f} was instantiated.
+    \begin{lstlisting}[language=JavaScript]
+        function wrap(wrapped) {
+            function wrapper() {
+                return wrapped;
+            }
+            return wrapper;
+        }
+        var a = {a: "a"};
+        var b = {b: "b"};
+        var a_wrapper = wrap(a);
+        var b_wrapper = wrap(b);
+        a_wrapper() === a;  // ==> true
+        b_wrapper() === b;  // ==> true
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Our Surprising Example (Revisited)}
+    This example illustrates how the global object is at the intersection of
+    these three different language features: variable, properties, and
+    invocation contexts.
+
+    \begin{lstlisting}[language=JavaScript]
+    function f() {
+        x = new Object();
+    }
+    f()
+    window.x === x && x === this.x  // true!
+    \end{lstlisting}
+
+    We cannot normally use \textit{property accesses} on our scopes: we don't
+    have expressions which evaluate to a scope. But there's one exception: the
+    global object.
+\end{frame}

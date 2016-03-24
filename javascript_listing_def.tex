@@ -1,0 +1,22 @@
+% It appears that JavaScript is not currently a "known" language in the
+% `listings` package. The below definition is taken from this StackExchange
+% post: `http://tex.stackexchange.com/a/89576/97020`
+
+\definecolor{jslightgray}{rgb}{.9,.9,.9}
+\definecolor{jsdarkgray}{rgb}{.4,.4,.4}
+\definecolor{jsgreen}{rgb}{0,0.6,0}
+
+\lstdefinelanguage{JavaScript}{
+  keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+  keywordstyle=\color{blue}\bfseries,
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  ndkeywordstyle=\color{jsdarkgray}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{jsgreen}\textit,
+  stringstyle=\color{red},
+  morestring=[b]',
+  morestring=[b]"
+}

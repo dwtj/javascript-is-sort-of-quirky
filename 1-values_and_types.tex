@@ -1,0 +1,119 @@
+\section{Values and Types}
+
+\begin{frame}
+    \frametitle{Values in JavaScript}
+    \begin{itemize}
+        \item{\textbf{Dynamically Typed:} All type info is at runtime; variables
+              have no static type annotations.}
+        \item{\textbf{Weakly Typed:} Few type checks; lots of implicit type
+              coercion.}
+        \item{\textbf{Functions:} Functions are values that can be instantiated
+              dynamically and treated as values.}
+        \item{\textbf{Objects:} Objects have \textit{properties} which store
+              values; when a property lookup is called, it acts as a
+              \textit{method}.}
+        \item{\textbf{Objects Are Just Maps:} Properties can be dynamically
+              added, removed, and assigned values.}
+        \item{\textbf{No UDTs:} No language support for static user-defined
+              types (UDTs), but they can be emulated via constructors which
+              manipulate object properties.}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Some Familiar Literals}
+    \begin{itemize}
+        \item{String Literal: \lstinline[language=JavaScript]{"Foo"}}
+        \item{Number Literal: \lstinline[language=JavaScript]{42}}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Array Literals}
+    \begin{lstlisting}[language=JavaScript]
+    var arr = ["Hello", "world", "!", 42];
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Object Literals}
+    \begin{lstlisting}[language=JavaScript]
+    var obj = {
+        foo: "bar",
+        n: 42
+    };
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Function Literals}
+
+    Aside from their names, these two functions are equivalent in every way. The
+    former is syntactic sugar for the latter.
+
+    \begin{lstlisting}[language=JavaScript]
+    function f(x) {
+        return x + 42;
+    };
+    \end{lstlisting}
+
+    \begin{lstlisting}[language=JavaScript]
+    var g = function(x) {
+        return x + 42;
+    };
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Nested Function Literals}
+    \begin{lstlisting}[language=JavaScript]
+    var enclosed = 42;
+    function outer() {
+        function inner() {
+            return enclosed;
+        }
+        return inner;
+    }
+    enclosed === outer()();  // ==> true
+    \end{lstlisting}
+    We'll talk more about scopes later.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Functions and Arrays are actually objects.}
+    ES6 defines seven datatypes:
+    \begin{itemize}
+        \item{Boolean}
+        \item{Null}
+        \item{Undefined}
+        \item{Number}
+        \item{String}
+        \item{Symbol (new in ES6)}
+        \item{Object}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{These types don't quite match \texttt{typeof}}
+    ES6 defines the following behavior for the \texttt{typeof} operator:
+    \begin{itemize}
+        \item{\lstinline{typeof Undefined ==> "undefined"}}
+        \item{\lstinline{typeof Null ==> "object"}}
+        \item{\lstinline{typeof Boolean ==> "boolean"}}
+        \item{\lstinline{typeof Number ==> "number"}}
+        \item{\lstinline{typeof String ==> "string"}}
+        \item{\lstinline{typeof Symbol ==> "symbol"}}
+        \item{\lstinline{typeof Impl-dependent Function Object ==> "function"}}
+        \item{\lstinline{typeof Object ==> "object"}}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Weak Typing in JavaScript}
+    \begin{figure}
+        \centering
+        \includegraphics[scale=.20]{wat}
+        \\
+        \url{https://www.destroyallsoftware.com/talks/wat}
+    \end{figure}
+\end{frame}

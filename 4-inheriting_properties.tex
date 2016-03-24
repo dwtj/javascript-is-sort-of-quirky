@@ -1,0 +1,56 @@
+\section{Inheriting Properties}
+
+\begin{frame}
+    \frametitle{Objects Can Inherit Properties via Prototypal Inheritance}
+    \begin{center}
+        \textit{To the white board!}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Three Ways to Designate an Object's Prototype}
+    \begin{itemize}
+        \item{\textbf{Explictly at Object Instantiation:} The
+              \texttt{Object.create()} helper function creates a new object
+              instance with a given prototype.}
+        \item{\textbf{Constructor Functions:} Set a constructor function's
+              \texttt{prototype} property, and this object will become the
+              prototype of all object instanted from this constructor.}
+        \item{\textbf{Set Manually}}: \texttt{Object.setPrototypeOf()}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Prototype Chain Search}
+    \begin{itemize}
+        \item{\textbf{Reading From obj.p:} The prototype chain of \texttt{obj}
+              is searched, looking for the first object which \textit{defines}
+              \texttt{p}. If \texttt{p} is never found, \texttt{undefined} is
+              returned.}
+        \item{\textbf{Assigning To obj.p:}} The prototype chain of \texttt{obj}
+              is searched, looking for the first object which \textit{defines}
+              \texttt{p}. If \texttt{p} is never found, \texttt{p} is defined
+              directly on \texttt{obj}.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Scope Chains vs Prototype Chains}
+    \begin{itemize}
+        \item{\textbf{Scope Chain:}}
+        \begin{itemize}
+            \item{Extended by function call.}
+            \item{Extends from function definition scope. (Lexical/static
+                  scoping)}
+            \item{Stored values accessed via variable accesses.}
+            \item{The chain's root is always the global object.}
+        \end{itemize}
+        \item{\textbf{Prototype Chain:}}
+        \begin{itemize}
+            \item{Extended by object creation.}
+            \item{Extends from a designated object.}
+            \item{Stored values accessed via property accesses.}
+            \item{The chain's root is always \texttt{null}.}
+        \end{itemize}
+    \end{itemize}
+\end{frame}

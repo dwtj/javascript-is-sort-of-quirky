@@ -1,0 +1,28 @@
+\section{What is \texttt{this}?}
+
+\begin{frame}
+    \frametitle{What is \texttt{this}?}
+    \begin{itemize}
+        \item{w3schools: ``In JavaScript, the thing called \texttt{this}, is the
+              object that `owns' the current code.''}
+        \item{\texttt{this} is a keyword which evaluates to the current
+              \textit{invocation context}, and how it is set depends upon how
+              the current function was invoked.}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\texttt{this} Is Set In One Of Four Ways}
+    \begin{itemize}
+        \item{\textbf{Method Invocation:} If the current fuction was invoked as
+              a method, then \texttt{this} is the \textit{receiver object}.}
+        \item{\textbf{Constructor Invocation:} If the current function was
+              invoked as a constructor (i.e. using the \texttt{new} keyword),
+              then \texttt{this} is the new object being constructed.}
+        \item{\textbf{Explicit Argument:} If the current function was called via
+              its \texttt{call()} or \texttt{apply()} methods, then
+              \texttt{this} will be the first argument passed in.}
+        \item{\textbf{Otherwise:} If in the root of the script or in a normal
+              function invocation, \texttt{this} is the global object.}
+    \end{itemize}
+\end{frame}
