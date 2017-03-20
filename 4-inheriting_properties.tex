@@ -1,21 +1,49 @@
 \section{Inheriting Properties}
 
 \begin{frame}
-    \frametitle{Objects Can Inherit Properties via Prototypal Inheritance}
-    \begin{center}
-        \textit{To the white board!}
-    \end{center}
+  \frametitle{JavaScript Does Property Inheritance Differently}
+  \begin{itemize}
+    \item Not class-based or "classical" inheritance.
+    \item Prototypal inheritance.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Any Function Instance Can be Used as a Constructor}
+    \begin{lstlisting}[language=JavaScript]
+        var MyConstructor = function(x) {
+          this.myProperty = x;
+          // ...
+        }
+        var obj = new MyConstructor(5);
+        console.log(obj);
+            // ==> MyConstructor {myProperty: 5}
+    \end{lstlisting}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Three Ways to Designate an Object's Prototype}
+    \frametitle{Every Constructor Instance (i.e. Function Instance) has a
+                \texttt{prototype} Property}
     \begin{itemize}
+      \item{An object \texttt{o} constructed by some constructor \texttt{C} will
+            inherit properties from \texttt{C.prototype} via a ``hidden''
+            property \texttt{o.\_\_proto\_\_}.}
+      \item{We can manually set \texttt{C.prototype}.}
+      \item{By default, JS initializes the \texttt{protoype} to an empty object
+            instance.}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{There are Actually Three Ways to Designate an Object's Prototype}
+    \begin{itemize}
+        \item{\textbf{Constructor Functions:} Set a constructor function's
+              \texttt{prototype} property, and this object will become the
+              prototype of all object instanted from this constructor. (We saw
+              this one.)}
         \item{\textbf{Explictly at Object Instantiation:} The
               \texttt{Object.create()} helper function creates a new object
               instance with a given prototype.}
-        \item{\textbf{Constructor Functions:} Set a constructor function's
-              \texttt{prototype} property, and this object will become the
-              prototype of all object instanted from this constructor.}
         \item{\textbf{Set Manually}}: \texttt{Object.setPrototypeOf()}
     \end{itemize}
 \end{frame}
